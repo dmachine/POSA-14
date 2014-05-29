@@ -38,7 +38,8 @@ public class SimpleSemaphore {
         // making sure to allow both fair and non-fair Semaphore
         // semantics.
     	numPermits = permits;
-    	
+    	lock = new ReentrantLock(fair);
+    	hasPermits = lock.newCondition();
     }
 
     /**
@@ -53,8 +54,6 @@ public class SimpleSemaphore {
     			hasPermits.await();
     		}
     		numPermits--;
-    		System.out.println("acquired");
-    		System.out.println(numPermits);
     	} finally {
     		lock.unlock();
     	}
@@ -72,8 +71,6 @@ public class SimpleSemaphore {
     			hasPermits.awaitUninterruptibly();
     		}
     		numPermits--;
-    		System.out.println("acquiredunint");
-    		System.out.println(numPermits);
     	} finally {
     		lock.unlock();
     	}
@@ -84,10 +81,13 @@ public class SimpleSemaphore {
      */
     void release() {
         // TODO - you fill in here.
-    	numPermits++;
-    	System.out.println("released");
-    	System.out.println(numPermits);
-//    	hasPermits.signal();
+    	lock.lock();
+    	try {
+    		numPermits++;
+    		hasPermits.signal();
+    	} finally {
+    		lock.unlock();
+    	}
     }
 
     /**
