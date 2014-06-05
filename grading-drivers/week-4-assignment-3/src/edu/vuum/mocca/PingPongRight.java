@@ -85,14 +85,11 @@ public class PingPongRight {
 
             // TODO - You fill in here.
         	for(int i = 0; i < mMaxLoopIterations; ++i) {
-        		try{
-        			semas[FIRST_SEMA].acquire();
-        			System.out.println(outmsg+"("+i+")");
-        			semas[SECOND_SEMA].release();
-        		} catch (InterruptedException e) {
-        			
-        		}
+     			semas[FIRST_SEMA].acquireUninterruptibly();
+       			System.out.println(outmsg+"("+(i+1)+")");
+       			semas[SECOND_SEMA].release();
         	}
+        	mLatch.countDown();
         }
 
         /**
@@ -161,8 +158,6 @@ public class PingPongRight {
         // synchronizer call to mLatch that waits for both threads to
         // finish.
         mLatch.await();
-
-        throw new java.lang.InterruptedException();
 
         System.out.println(finishString);
     }
