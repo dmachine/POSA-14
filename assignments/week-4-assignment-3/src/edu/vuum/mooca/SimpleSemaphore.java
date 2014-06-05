@@ -1,4 +1,4 @@
-package edu.vuum.mocca;
+package edu.vuum.mooca;
 
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.Lock;
