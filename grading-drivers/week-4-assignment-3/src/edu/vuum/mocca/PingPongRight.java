@@ -146,16 +146,16 @@ public class PingPongRight {
 
         // Create the ping and pong threads, passing in the string to
         // print and the appropriate SimpleSemaphores.
-        PlayPingPongThread ping = new PlayPingPongThread("Ping!",pingSema,pongSema,mMaxIterations);
-        PlayPingPongThread pong = new PlayPingPongThread("Pong!",pongSema,pingSema,mMaxIterations);
+        PlayPingPongThread ping = new PlayPingPongThread(pingString,pingSema,pongSema,maxIterations);
+        PlayPingPongThread pong = new PlayPingPongThread(pongString,pongSema,pingSema,maxIterations);
 
         // TODO - Initiate the ping and pong threads, which will call
         // the run() hook method.
         ping.start();
         pong.start();
 
-        // TODO - replace the following line with a barrier
-        // synchronizer call to mLatch that waits for both threads to
+        // TODO - replace the following line with a CountDownLatch
+        // barrier synchronizer call that waits for both threads to
         // finish.
         mLatch.await();
 
