@@ -43,8 +43,6 @@ class SimpleAtomicLong
      */
     public long get()
     {
-        long value;
-
         // TODO -- you fill in here
         mRWLock.readLock().lock();
         try { return mValue; }
@@ -59,8 +57,6 @@ class SimpleAtomicLong
      */
     public long decrementAndGet()
     {
-        long value = 0;
-
         // TODO -- you fill in here
         mRWLock.writeLock().lock();
         try { return --mValue; }
@@ -75,8 +71,6 @@ class SimpleAtomicLong
      */
     public long getAndIncrement()
     {
-        long value = 0;
-
         // TODO -- you fill in here
         mRWLock.writeLock().lock();
         try { return mValue++; }
@@ -91,8 +85,6 @@ class SimpleAtomicLong
      */
     public long getAndDecrement()
     {
-        long value = 0;
-
         // TODO -- you fill in here
         mRWLock.writeLock().lock();
         try { return mValue--; }
@@ -107,8 +99,6 @@ class SimpleAtomicLong
      */
     public long incrementAndGet()
     {
-        long value = 0;
-
         // TODO -- you fill in here
         mRWLock.writeLock().lock();
         try { return ++mValue; }
