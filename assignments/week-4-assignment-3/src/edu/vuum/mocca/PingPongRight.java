@@ -86,9 +86,9 @@ public class PingPongRight {
 
             // TODO - You fill in here.
         	for(int i = 0; i < mMaxLoopIterations; ++i) {
-        		semas[FIRST_SEMA].acquireUninterruptibly();
+        		acquire();
        			System.out.println(outmsg+"("+(i+1)+")");
-       			semas[SECOND_SEMA].release();
+       			release();
         	}
         	mLatch.countDown();
         }
